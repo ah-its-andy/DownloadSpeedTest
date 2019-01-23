@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace DownloadSpeedTest
 {
@@ -18,10 +18,12 @@ namespace DownloadSpeedTest
         {
             app.Run(async (context) =>
             {
-                var downloadBytes = Program.DownloadBytes;
                 context.Response.ContentType = "application/octet-stream";
-                context.Response.ContentLength = downloadBytes.Length;
-                await context.Response.Body.WriteAsync(downloadBytes, 0, downloadBytes.Length);
+                context.Response.ContentLength = 1024000000;
+                for (int i = 0; i < 100000; i++)
+                {
+                    await context.Response.Body.WriteAsync(Program.DownloadBytes);
+                }
             });
         }
     }

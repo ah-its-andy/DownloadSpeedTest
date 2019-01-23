@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using System;
 
 namespace DownloadSpeedTest
 {
@@ -20,7 +19,7 @@ namespace DownloadSpeedTest
 
         public static void Main(string[] args)
         {
-            downloadBytes = new byte[1024000000];
+            downloadBytes = new byte[10240];
 
             for(int i=0;i< downloadBytes.Length; i++)
             {
